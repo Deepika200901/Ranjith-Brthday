@@ -1,0 +1,234 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Happy Birthday Anna ❤️</title>
+
+<style>
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  min-height: 100svh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  font-family: Georgia, serif;
+  color: white;
+  background:
+    radial-gradient(circle at top, #40204f, transparent 55%),
+    linear-gradient(135deg, #090711, #1a1028, #08070e);
+  overflow-x: hidden;
+  padding: 24px 16px;
+}
+
+.sparkle {
+  position: fixed;
+  color: #ffe6a1;
+  animation: twinkle 2s infinite alternate;
+  pointer-events: none;
+}
+
+@keyframes twinkle {
+  from { opacity: 0.2; transform: scale(0.7); }
+  to { opacity: 1; transform: scale(1.3); }
+}
+
+.container {
+  width: 100%;
+  max-width: 430px;
+  padding: 28px 18px;
+}
+
+h1 {
+  color: #ffdf91;
+  text-shadow: 0 0 18px #d99bff;
+  font-size: clamp(28px, 8vw, 40px);
+}
+
+p {
+  line-height: 1.8;
+}
+
+#giftButton {
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  font-size: clamp(90px, 27vw, 140px);
+  filter: drop-shadow(0 0 18px #ffca6b);
+  animation: float 2s ease-in-out infinite;
+}
+
+@keyframes float {
+  50% { transform: translateY(-12px) rotate(3deg); }
+}
+
+#giftButton:focus-visible,
+button:focus-visible {
+  outline: 3px solid white;
+  outline-offset: 5px;
+}
+
+button {
+  -webkit-tap-highlight-color: transparent;
+}
+
+.message {
+  display: none;
+  animation: appear 1s ease both;
+}
+
+.message.show {
+  display: block;
+}
+
+@keyframes appear {
+  from { opacity: 0; transform: translateY(25px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.photo {
+  width: min(100%, 260px);
+  aspect-ratio: 4 / 5;
+  object-fit: cover;
+  border: 3px solid #ffdf91;
+  border-radius: 22px;
+  box-shadow: 0 0 28px #bd80ff;
+  margin: 18px auto;
+  display: block;
+}
+
+.surprise {
+  background: linear-gradient(90deg, #ffcf70, #ff9fcf);
+  color: #211027;
+  padding: 13px 22px;
+  border: none;
+  border-radius: 30px;
+  font-size: 16px;
+  font-weight: bold;
+  cursor: pointer;
+  margin-top: 12px;
+}
+
+#extra {
+  color: #ffdf91;
+  min-height: 28px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    scroll-behavior: auto !important;
+  }
+}
+</style>
+</head>
+
+<body>
+
+<div class="container">
+  <div id="welcome">
+    <p>✨ Oru chinna surprise unakkaga, Anna... ✨</p>
+    <h1>Ready ah? 🎁</h1>
+    <p>Unakkaga oru special gift irukku!</p>
+
+    <button id="giftButton"
+      aria-label="Open your birthday gift">
+      🎁
+    </button>
+
+    <p>Tap the gift to open your surprise 💝</p>
+  </div>
+
+  <div id="birthday" class="message" aria-live="polite">
+    <h1>Happy Birthday, En Anna! ❤️</h1>
+
+    <p>Innaiku un special day! 🎂✨</p>
+
+    <!-- Replace anna.jpg with your photo filename -->
+    <img class="photo"
+      src="C:\Users\deepi\OneDrive\Pictures\deepi phothos\_BAL2178.JPG"
+      alt="A favourite photo of my Anna"
+      onerror="this.style.display='none';
+      document.getElementById('photoHint').style.display='block';">
+
+    <p id="photoHint" style="display:none">
+      📸 Add your Anna's photo as anna.jpg
+    </p>
+
+    <p>
+      Happy Birthday da Anna! ❤️<br>
+      Nee eppovume happy-ah irukkanum.<br>
+      Un dreams ellam nijamaaganum.<br>
+      En life-la nee irukkuradhu romba special.<br>
+      Eppovume ippadiye sirichitte iru!<br>
+      Love you da Anna! 🫶✨
+    </p>
+
+    <button class="surprise" id="moreButton">
+      One More Surprise 💝
+    </button>
+
+    <p id="extra" aria-live="polite"></p>
+  </div>
+</div>
+
+<script>
+const giftButton = document.getElementById("giftButton");
+const welcome = document.getElementById("welcome");
+const birthday = document.getElementById("birthday");
+const extra = document.getElementById("extra");
+
+function sparkle() {
+  const star = document.createElement("span");
+  star.className = "sparkle";
+  star.textContent = ["✦", "✧", "✨", "★"][
+    Math.floor(Math.random() * 4)
+  ];
+
+  star.style.left = Math.random() * 100 + "vw";
+  star.style.top = Math.random() * 100 + "vh";
+  star.style.fontSize = (12 + Math.random() * 20) + "px";
+
+  document.body.appendChild(star);
+
+  setTimeout(() => star.remove(), 3500);
+}
+
+for (let i = 0; i < 22; i++) {
+  sparkle();
+}
+
+setInterval(sparkle, 500);
+
+giftButton.addEventListener("click", () => {
+  welcome.style.display = "none";
+  birthday.classList.add("show");
+
+  for (let i = 0; i < 35; i++) {
+    setTimeout(sparkle, i * 50);
+  }
+});
+
+document.getElementById("moreButton")
+  .addEventListener("click", () => {
+    extra.textContent =
+      "Nee enakku brother mattum illa, " +
+      "oru special blessing-um dhaan! ❤️ " +
+      "Always happy-ah iru, Anna! 🫶✨";
+
+    for (let i = 0; i < 25; i++) {
+      setTimeout(sparkle, i * 40);
+    }
+  });
+</script>
+
+</body>
+</html>
